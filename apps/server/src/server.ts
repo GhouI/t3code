@@ -43,6 +43,7 @@ import { ProviderInstanceRegistryHydrationLive } from "./provider/Layers/Provide
 import * as TerminalManager from "./terminal/Manager.ts";
 import * as McpHttpServer from "./mcp/McpHttpServer.ts";
 import * as McpSessionRegistry from "./mcp/McpSessionRegistry.ts";
+import * as OrchestrationDelegationBroker from "./mcp/OrchestrationDelegationBroker.ts";
 import * as PreviewAutomationBroker from "./mcp/PreviewAutomationBroker.ts";
 import * as PreviewManager from "./preview/Manager.ts";
 import * as PortScanner from "./preview/PortScanner.ts";
@@ -423,6 +424,7 @@ export const makeRoutesLayer = Layer.mergeAll(
   ),
   McpHttpServer.layer.pipe(Layer.provide(McpSessionRegistry.layer)),
 ).pipe(
+  Layer.provide(OrchestrationDelegationBroker.layer),
   Layer.provide(PreviewAutomationBroker.layer),
   Layer.provide(ServerSelfUpdate.layer),
   Layer.provide(commandReadinessLayer),
